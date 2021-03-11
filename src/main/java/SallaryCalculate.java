@@ -1,5 +1,10 @@
+import org.apache.poi.ss.formula.functions.T;
+
+import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.Date;
-import java.util.concurrent.ExecutorService;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class SallaryCalculate {
 
@@ -16,6 +21,11 @@ public class SallaryCalculate {
     private static double sumOfStaff = 0;
     private static double sumOfOwners = 0;
     private static double otherPossitions = 0;
+    static Map <Date, Double> morningSallaring = new LinkedHashMap<>();
+    static Map <Date, Double> daySallaring = new LinkedHashMap<>();
+    static Map <Date, Double> nigthSallaring = new LinkedHashMap<>();
+    static Map <Date, Double> teaMasterSallaring = new LinkedHashMap<>();
+
 
     protected static void calculateIntoDay( String categoryOfHpProgram, Double sumOfPossition ) {
         switch (categoryOfHpProgram) {
@@ -62,13 +72,14 @@ public class SallaryCalculate {
                 break;
         }
     }
-    protected static void calculateAfterDay( String categoryOfHpProgram, Double sumOfPossition, Date dateOfDay){
-        Handler.morningSallarying.put(dateOfDay, morningSallary);
-        Handler.daySallarying.put(dateOfDay, daySallary);
-        Handler.nightSallarying.put(dateOfDay, nightSallary + 2000);
-        Handler.teaMasterSallarying.put(dateOfDay, teaMasterSallary + 1000);
+    protected static void calculateAfterDay( String categoryOfHpProgram, Double sumOfPossition, Date dateOfDay) throws ParseException {
+        Date currentDate = DateHandler.startOfCurrentDay(dateOfDay);
+        morningSallaring.put(currentDate, morningSallary);
+        daySallaring.put(currentDate, daySallary);
+        nigthSallaring.put(currentDate, nightSallary + 2000);
+        teaMasterSallaring.put(currentDate, teaMasterSallary + 1000);
 
-        System.out.println("В этот день: " + dateOfDay + " \n было продано напитков на сумму: \n" +
+        System.out.println("В этот день: " + currentDate + " \n было продано напитков на сумму: \n" +
                 sumOfDrinks + " , сумма по чайной зоне: \n" +
                 sumOfTeaZone + " , касса утреннего мастера составила: \n" +
                 sumOfMorning + " , дневная касса по сумме составила: \n" +
