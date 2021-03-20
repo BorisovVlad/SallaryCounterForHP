@@ -13,7 +13,7 @@ public class ExcelHandler {
     protected static List<List<String>> parse( String fileName ) throws ParseException {
         //инициализирую потоки
         List<List<String>> arrays = new ArrayList<>();
-        InputStream inputStream = null;
+        InputStream inputStream;
         XSSFWorkbook workBook = null;
         try {
             inputStream = new FileInputStream(fileName);

@@ -32,7 +32,7 @@ public class Handler {
         PrinterMap.printTeaMasterMap(SallaryCalculate.teaMasterSallaring);
     }
 
-    private static boolean currentDayOfSallary( Date dateOfDay, Date startOfNextDay ) throws ParseException {
+    static boolean currentDayOfSallary( Date dateOfDay, Date startOfNextDay ) throws ParseException {
         boolean correct = dateOfDay.getTime() < startOfNextDay.getTime();
         if (correct) {
             return true;

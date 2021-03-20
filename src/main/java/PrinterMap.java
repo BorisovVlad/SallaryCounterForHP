@@ -18,4 +18,7 @@ public class PrinterMap {
     protected static void printTeaMasterMap( Map<Date, Double> map ) {
         map.forEach(( key, value ) -> System.out.println("Зарплата чайного мастера " + key + "     :     " + value + " рублей"));
     }
+    protected static void printKonMaster( Map<Date, Double> map ) {
+        map.forEach(( key, value ) -> System.out.println("Зарплата мастера на конюшенной " + key + "     :     " + value + " рублей"));
+    }
 }
